@@ -306,9 +306,7 @@ class S3Request {
 	}
 	
 	function isError(responseText:String):Bool {
-        var xml = Xml.parse(responseText);
-        var root = xml.firstChild();
-        return root != null && root.nodeName == "Error";
+        return StringTools.startsWith( StringTools.trim( StringTools.replace( responseText , '<?xml version="1.0" encoding="UTF-8"?>' , "" ) ) , "<Error>" );
     }
 	
 }
